@@ -1,6 +1,4 @@
 import axios from 'axios';
-import uuid from 'node-uuid';
-import moment from 'moment';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
@@ -17,13 +15,7 @@ class MapView extends Component {
     constructor (props) {
         super(props);
 
-        var {dispatch} = this.props;
-        socket.on('update locations', (spots) => this.updateLocationsArr(spots));
 
-        socket.on('updateUserList', function(usersArr) {
-            console.log('Users list', usersArr);
-            dispatch(actions.updateUsersList(usersArr));
-        });
 
         var that = this;
 
@@ -64,6 +56,13 @@ class MapView extends Component {
 // };
 
     render () {
+        var {dispatch} = this.props;
+        // socket.on('update locations', (spots) => this.updateLocationsArr(spots));
+
+        socket.on('updateUserList', function(usersArr) {
+            console.log('Users list', usersArr);
+            dispatch(actions.updateUsersList(usersArr));
+        });
         return (
             <div>
                 <Nav/>

@@ -67,3 +67,24 @@ export var usersListReducer = (state = [], action) => {
 
     }
 };
+
+export var messagesReducer = (state = [], action) => {
+    switch(action.type) {
+        case 'ADD_MESSAGE':
+            return [
+                ...state,
+                {
+                    user: action.user,
+                    room: action.room,
+                    text: action.text,
+                    timeSent: action.timeSent
+                }
+            ];
+        case 'UPDATE_MESSAGE_LIST':
+            return [
+                ...action.messagesArr
+            ];
+        default:
+            return state;
+    }
+};

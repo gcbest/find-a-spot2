@@ -5,20 +5,14 @@ import {connect} from 'react-redux';
 
 import Nav from './Nav';
 import UserList from './UserList';
+import SendMessage from './SendMessage';
+import ChatArea from './ChatArea';
 
 class ChatView extends Component {
-    constructor() {
-        super();
-        socket.on('new user join', (users) => this.joinUser(users));
-
-    }
-    joinUser(user) {
-        const combinedUsers = [...this.state.users, user];
-        const newUsers = Array.from(new Set(combinedUsers));
-        const cleanUsers = newUsers.filter(user => {return user.length > 1});
-        this.setState({users: cleanUsers});
-    }
     render() {
+        socket.on('updateMessages', (messagesArray) => {
+
+        });
         return (
             <div>
                 <Nav/>
@@ -29,13 +23,8 @@ class ChatView extends Component {
                     </div>
                     <div className="chat__main">
                         {/*<ol id="messages" className="chat__messages"></ol>*/}
-                        <div className="chat__footer">
-                            <form action="" id="message-form">
-                                <input name="message" type="text" placeholder="Message" autoFocus autoComplete="off" />
-                                <button>Send</button>
-                            </form>
-                            <button id="send-location">Send Location</button>
-                        </div>
+                        <ChatArea/>
+                        <SendMessage/>
                     </div>
                 </div>
             </div>

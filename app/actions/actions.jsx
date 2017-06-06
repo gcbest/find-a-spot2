@@ -61,3 +61,20 @@ export var updateUsersList = (list) => {
         list
     };
 };
+
+export var addMessage = (user, room, text, timeSent) => {
+    return {
+        type: 'ADD_MESSAGE',
+        user,
+        room,
+        text,
+        timeSent
+    };
+};
+
+export var updateMessageList = (messagesArr) => {
+    return {
+        type: 'UPDATE_MESSAGE_LIST',
+        messagesArr
+    };
+};

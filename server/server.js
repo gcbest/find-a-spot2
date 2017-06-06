@@ -2,11 +2,14 @@ const express = require('express');
 const path = require('path');
 const socketIO = require('socket.io');
 
-const {generateMessage, generateLocationMessage} = require('./utils/message.js');
+// const {generateMessage, generateLocationMessage} = require('./utils/message.js');
 const isRealString = require('./utils/validation');
 const Users = require('./utils/users');
+const Messages = require('./utils/message');
+
 
 var users = new Users();
+var messages = new Messages();
 
 const publicPath = path.join(__dirname, '../public');
 const PORT = process.env.PORT || 8080;
@@ -42,9 +45,9 @@ io.on('connection', (socket) => {
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
-        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+        // socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
 
-        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined the room`));
+        // socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined the room`));
 
         callback();
     });
@@ -58,31 +61,37 @@ io.on('connection', (socket) => {
         callback();
     });
 
-    socket.on('createMessage', (message, callback) => {
+    socket.on('updateMessagesArray', (newMessage) => {
+        messages.addMessage(newMessage);
         var user = users.getUser(socket.id);
-
-        if (user && isRealString(message.text)) {
-            io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
-        }
-        callback();
+        console.log('message list', messages.getMsgList(user.room))
+        io.to(user.room).emit('updateMessages', messages.getMsgList(user.room));
     });
 
-    socket.on('createLocationMessage', (coords) => {
-        var user = users.getUser(socket.id);
-
-        if (user) {
-            io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
-        }
-    });
+    // socket.on('createMessage', (message, callback) => {
+    //     var user = users.getUser(socket.id);
+    //
+    //     if (user && isRealString(message.text)) {
+    //         io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
+    //     }
+    //     callback();
+    // });
+    //
+    // socket.on('createLocationMessage', (coords) => {
+    //     var user = users.getUser(socket.id);
+    //
+    //     if (user) {
+    //         io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
+    //     }
+    // });
 
     socket.on('disconnect', () => {
         console.log('User disconnected');
         var user = users.removeUser(socket.id);
-        var user = users.getUser(socket.id);
 
         if (user) {
             io.to(user.room).emit('updateUserList', users.getUserList(user.room));
-            io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left` ));
+            // io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left` ));
         }
     });
 
