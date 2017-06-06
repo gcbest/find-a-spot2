@@ -1,13 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-const Nav = () => (
+const Nav = (props) => (
     <div>
         <ul>
-            <li><Link to="/chatview">Chat</Link></li>
-            <li><Link to="/mapview">Map</Link></li>
+            <li><Link to={`/chatview/${props.user.room}`}>Chat</Link></li>
+            <li><Link to={`/mapview/${props.user.room}`}>Map</Link></li>
         </ul>
     </div>
 );
 
-export default Nav;
+export default connect((state) => {
+    return state;
+})(Nav);

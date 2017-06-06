@@ -61,6 +61,7 @@ class MapView extends Component {
     render () {
         return (
             <div>
+                <Nav/>
                 <Map openSpots={this.props.locations} userCoords={this.state.userCoords} />
                 <OpenSpotsList addresses={this.props.locations} userCoords={this.state.userCoords}/>
             </div>

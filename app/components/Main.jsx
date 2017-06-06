@@ -15,6 +15,7 @@ const Main = (props) => {
                     <Switch>
                         <Route exact path="/" component={SignIn}/>
                         <Route path="/mapview/:id" component={MapView}/>
+                        <Route path="/chatview/:id" component={ChatView}/>
                     </Switch>
                 </div>
             </div>

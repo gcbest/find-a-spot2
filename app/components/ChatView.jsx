@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 const io = require('socket.io-client');
 const socket = io();
 
-
 import Nav from './Nav';
 import UserList from './UserList';
 
