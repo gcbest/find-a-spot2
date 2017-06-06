@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import uuid from 'node-uuid';
 import moment from 'moment';
 import axios from 'axios';
 
 var initMap = require('../api/googlemaps');
+var actions = require('../actions/actions');
+
 
 class Map extends Component {
     componentWillMount () {
@@ -36,7 +39,11 @@ class Map extends Component {
                 location.address = response.data.results[0].formatted_address;
                 location.zipCode = response.data.results[0].address_components[7].long_name;
 
-                that.props.addLocation(location);
+                // that.props.addLocation(location);
+
+                var {dispatch} = that.props;
+                dispatch(actions.addLocation(location));
+
                 initMap(location, that.props.openSpots);
             })
             .catch((error) => {
@@ -62,13 +69,14 @@ class Map extends Component {
                 markedClosedAt: undefined
             };
 
-            var obj2 = {lat: 41.003, lng: -72.48502, address: '74 Peabody Pl, Brick City', available: true, id: "3", zipCode: '10462'};
-            that.props.addLocation(obj2);
+            var obj2 = {lat: 40.728224399999995, lng: -74.1844780998, address: '74 Peabody Pl, Brick City', available: true, id: "3", zipCode: '07103'};
 
-            var obj3 = {lat: 43.303, lng: -72.48502, address: '99 Allen Ave, New Jack City', available: true, id: "4", zipCode: '13362'};
-            that.props.addLocation(obj3);
+            var obj3 = {lat: 40.728224399999995, lng: -74.1844780998, address: '99 Allen Ave, New Jack City', available: true, id: "4", zipCode: '07103'};
 
             that.formatAddress(obj);
+            that.formatAddress(obj2);
+            that.formatAddress(obj3);
+
         }, function() {
             // locationButton.removeAttr('disabled').text('Send Location');
             alert('Unable to fetch location');
@@ -86,4 +94,6 @@ class Map extends Component {
     }
 }
 
-export default Map;
+export default connect((state) => {
+    return state;
+})(Map);

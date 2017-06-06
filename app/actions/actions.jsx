@@ -1,6 +1,6 @@
 var {socket} = require('../components/SignIn');
 
-export var addUser = (name, room, redirect = false) => {
+export var addUser = (name, room, redirect = false, userCoords) => {
     var params = {
         name,
         room
@@ -20,6 +20,37 @@ export var addUser = (name, room, redirect = false) => {
         type: 'ADD_USER',
         name,
         room,
-        redirect
+        redirect,
+        userCoords
+    }
+};
+
+export var addLocation = (obj) => {
+    // socket.emit('update locations array', this.state.locations, (err) => {
+    //     if (err) {
+    //         alert(err);
+    //     } else {
+    //         console.log('No error');
+    //     }
+    // });
+
+    return {
+        type: 'ADD_LOCATION',
+        lat: obj.lat,
+        lng: obj.lng,
+        address: obj.address,
+        zipCode: obj.zipCode,
+        id: obj.id,
+        available: obj.available,
+        markedOpenAt: obj.markedOpenAt,
+        markedClosedAt: obj.markedClosedAt
+    }
+};
+
+export var updateAvailability = (id, user) => {
+    return {
+        type: 'UPDATE_AVAILABILITY',
+        id,
+        user,
     }
 };

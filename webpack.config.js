@@ -32,7 +32,7 @@ module.exports = {
              loader: 'babel-loader',
               query: {
                  // take our files and parse them thru react and then turn them into es2015
-                 presets: ['react', 'es2015']
+                 presets: ['react', 'es2015', 'stage-0']
               },
               // let webpack know which folders we want to have parsed
               test: /\.jsx?$/,

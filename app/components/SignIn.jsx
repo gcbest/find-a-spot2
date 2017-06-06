@@ -9,14 +9,6 @@ var initMap = require('../api/googlemaps');
 var actions = require('../actions/actions');
 
 class SignIn extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         name: '',
-    //         room: '',
-    //         redirect: false
-    //     };
-    // }
     componentWillMount() {
         if (!document.getElementById('googleMapsAPI')) {
             const script = document.createElement("script");
@@ -62,7 +54,7 @@ class SignIn extends Component {
                     var room = response.data.results[0].address_components[7].long_name;
                     var redirect = true;
 
-                    dispatch(actions.addUser(name, room, redirect));
+                    dispatch(actions.addUser(name, room, redirect, userCoords));
                 })
                 .catch((error) => {
                     throw error;
