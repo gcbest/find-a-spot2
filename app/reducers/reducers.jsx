@@ -51,3 +51,19 @@ export var locationsReducer = (state = [], action) => {
             return state;
     }
 };
+
+export var usersListReducer = (state = [], action) => {
+    switch(action.type) {
+        case 'UPDATE_USERS_LIST':
+            if(action.list.length > 0) {
+                return [
+                    ...action.list
+                ];
+            } else {
+                return [];
+            }
+        default:
+            return state;
+
+    }
+};

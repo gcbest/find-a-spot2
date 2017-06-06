@@ -54,3 +54,10 @@ export var updateAvailability = (id, user) => {
         user,
     }
 };
+
+export var updateUsersList = (list) => {
+    return {
+        type: 'UPDATE_USERS_LIST',
+        list
+    };
+};

@@ -8,17 +8,22 @@ import Nav from './Nav';
 import Map from './Map';
 import OpenSpotsList from './OpenSpotsList';
 var {socket} = require('./SignIn');
+var actions = require('../actions/actions');
+
 
 var {formatAddress} = require('../api/formatAddress');
 
 class MapView extends Component {
-    constructor () {
-        super();
-        this.state = {
-            locations: []
-        };
+    constructor (props) {
+        super(props);
 
+        var {dispatch} = this.props;
         socket.on('update locations', (spots) => this.updateLocationsArr(spots));
+
+        socket.on('updateUserList', function(usersArr) {
+            console.log('Users list', usersArr);
+            dispatch(actions.updateUsersList(usersArr));
+        });
 
         var that = this;
 
@@ -62,8 +67,8 @@ class MapView extends Component {
         return (
             <div>
                 <Nav/>
-                <Map openSpots={this.props.locations} userCoords={this.state.userCoords} />
-                <OpenSpotsList addresses={this.props.locations} userCoords={this.state.userCoords}/>
+                <Map openSpots={this.props.locations} userCoords={this.props.user.userCoords} />
+                <OpenSpotsList addresses={this.props.locations} userCoords={this.props.user.userCoords}/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 const io = require('socket.io-client');
 const socket = io();
+import {connect} from 'react-redux';
 
 import Nav from './Nav';
 import UserList from './UserList';
@@ -8,10 +9,8 @@ import UserList from './UserList';
 class ChatView extends Component {
     constructor() {
         super();
-        this.state = {
-            users: []
-        };
         socket.on('new user join', (users) => this.joinUser(users));
+
     }
     joinUser(user) {
         const combinedUsers = [...this.state.users, user];
@@ -26,7 +25,7 @@ class ChatView extends Component {
                 <div className="chat">
                     <div className="chat__sidebar">
                         <h3>People</h3>
-                        <UserList users={this.state.users}/>
+                        <UserList users={this.props.usersList}/>
                     </div>
                     <div className="chat__main">
                         {/*<ol id="messages" className="chat__messages"></ol>*/}
@@ -44,4 +43,6 @@ class ChatView extends Component {
     }
 }
 
-export default ChatView;
+export default connect((state) => {
+    return state;
+})(ChatView);
