@@ -6,6 +6,7 @@ import axios from 'axios';
 
 var initMap = require('../api/googlemaps');
 var actions = require('../actions/actions');
+var {socket} = require('./SignIn');
 
 
 class Map extends Component {
@@ -43,6 +44,9 @@ class Map extends Component {
 
                 var {dispatch} = that.props;
                 dispatch(actions.addLocation(location));
+                socket.emit('addLocation', location, (err) => {
+                    if (err) console.log(err);
+                });
 
                 initMap(location, that.props.openSpots);
             })

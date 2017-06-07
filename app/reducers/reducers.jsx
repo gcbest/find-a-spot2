@@ -44,9 +44,10 @@ export var locationsReducer = (state = [], action) => {
                 }
 
             });
-
-
-
+        case 'UPDATE_LOCATIONS_LIST':
+            return [
+                ...action.locationsArr
+            ];
         default:
             return state;
     }

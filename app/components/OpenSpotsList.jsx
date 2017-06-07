@@ -3,25 +3,31 @@ import {connect} from 'react-redux';
 
 import OpenSpot from './OpenSpot';
 var {socket} = require('./SignIn');
+var actions = require('../actions/actions');
 
-class OpenSpotsList extends Component {
+
+class OpenSpotsList extends Component{
     // constructor (props) {
     //     super(props)
     // }
 
     componentDidUpdate() {
-        var {addresses} = this.props;
+        var {dispatch} = this.props;
 
-        socket.emit('update locations array', addresses, (err) => {
-            if (err) {
-                alert(err);
-            } else {
-                console.log('No error');
-            }
-        });
+        // socket.emit('updateLocationsArray', addresses, (err) => {
+        //     if (err) {
+        //         alert(err);
+        //     } else {
+        //         console.log('No error');
+        //     }
+        // });
+
+        // socket.on('updateLocations', (locations) => {
+        //     dispatch(actions.updateLocationsList(locations));
+        // });
     }
     render () {
-        var {addresses} = this.props;
+        var {locations} = this.props;
         var filterByZipCode = (locationArray) => {
             // Filtering to only show locations in user's zip code
             var locationsFiltered = locationArray;
@@ -30,15 +36,7 @@ class OpenSpotsList extends Component {
             });
         };
 
-        var filteredLocations = filterByZipCode(addresses);
-
-        socket.emit('update locations array', addresses, (err) => {
-            if (err) {
-                alert(err);
-            } else {
-                console.log('No error');
-            }
-        });
+        var filteredLocations = filterByZipCode(locations);
 
         var renderOpenSpots = () => {
             if (filteredLocations.length === 0) {

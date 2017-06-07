@@ -6,10 +6,12 @@ const socketIO = require('socket.io');
 const isRealString = require('./utils/validation');
 const Users = require('./utils/users');
 const Messages = require('./utils/message');
+const Locations = require('./utils/locations');
 
 
 var users = new Users();
 var messages = new Messages();
+var locations = new Locations();
 
 const publicPath = path.join(__dirname, '../public');
 const PORT = process.env.PORT || 8080;
@@ -23,8 +25,6 @@ const server = app.listen(PORT, () => {
 });
 
 const io = socketIO(server);
-
-var recentSpotsArr = [];
 
 io.on('connection', (socket) => {
     console.log('a user connected');
@@ -40,8 +40,8 @@ io.on('connection', (socket) => {
         var user = users.getUser(socket.id);
 
         console.log('user joined room', user);
-        console.log('recent spots array: ', recentSpotsArr);
-        io.to(user.room).emit('update locations', recentSpotsArr);
+        console.log('recent spots array: ', locations.getLocationsList(user.room));
+        io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
@@ -52,9 +52,25 @@ io.on('connection', (socket) => {
         callback();
     });
 
-    socket.on('update locations array', (locations, callback) =>{
-        if(locations.length > 0) {
-            recentSpotsArr = locations;
+    socket.on('addLocation', (openSpot, callback) =>{
+        var user = users.getUser(socket.id);
+        locations.addLocation(openSpot);
+        console.log('updated locations array: ', locations.getLocationsList(user.room));
+        io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
+        callback();
+    });
+
+    socket.on('updateAvailability', (spot, callback) =>{
+        var user = users.getUser(socket.id);
+        var loc = locations.removeLocation(spot.id);
+        if (loc) {
+            io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
+        }
+        callback();
+    });
+
+    socket.on('updateLocationsArray', (openSpots, callback) =>{
+        if(openSpots.length > 0) {
             var user = users.getUser(socket.id);
             io.to(user.room).emit('update locations', locations);
         }
@@ -64,7 +80,7 @@ io.on('connection', (socket) => {
     socket.on('updateMessagesArray', (newMessage) => {
         messages.addMessage(newMessage);
         var user = users.getUser(socket.id);
-        console.log('message list', messages.getMsgList(user.room))
+        console.log('message list', messages.getMsgList(user.room));
         io.to(user.room).emit('updateMessages', messages.getMsgList(user.room));
     });
 

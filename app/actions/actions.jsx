@@ -78,3 +78,10 @@ export var updateMessageList = (messagesArr) => {
         messagesArr
     };
 };
+
+export var updateLocationsList = (locationsArr) => {
+    return {
+        type: 'UPDATE_LOCATIONS_LIST',
+        locationsArr
+    };
+};

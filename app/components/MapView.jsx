@@ -67,7 +67,7 @@ class MapView extends Component {
             <div>
                 <Nav/>
                 <Map openSpots={this.props.locations} userCoords={this.props.user.userCoords} />
-                <OpenSpotsList addresses={this.props.locations} userCoords={this.props.user.userCoords}/>
+                <OpenSpotsList userCoords={this.props.user.userCoords}/>
             </div>
         );
     }

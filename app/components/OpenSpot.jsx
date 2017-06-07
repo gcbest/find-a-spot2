@@ -6,6 +6,7 @@ var {socket} = require('./SignIn');
 
 
 class OpenSpot extends Component {
+
     render() {
         var {address, markedOpenAt, available, id, user, dispatch} = this.props;
 
@@ -32,6 +33,8 @@ class OpenSpot extends Component {
                   alert("You must be at the spot's location to claim it");
               }
         };
+
+
 
         var renderSpot = () => {
 
