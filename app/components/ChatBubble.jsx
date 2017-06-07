@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 var action = require('../actions/actions');
 var {socket} = require('./SignIn');
 
-
 class ChatBubble extends Component {
     render() {
         var {name, text, timeSent} = this.props;

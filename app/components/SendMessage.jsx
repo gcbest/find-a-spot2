@@ -8,8 +8,8 @@ var actions = require('../actions/actions');
 
 class SendMessage extends Component {
     render() {
-        var {user, dispatch} = this.props;
         var createMessage = (e) => {
+            var {user, dispatch} = this.props;
             e.preventDefault();
             var message = this.refs.message.value;
             var messageObject = {
@@ -28,6 +28,8 @@ class SendMessage extends Component {
                     }
                 });
             }
+            // clear input box after sending the message
+            this.refs.message.value = '';
         };
         return (
             <div className="chat__footer">

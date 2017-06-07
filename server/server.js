@@ -41,9 +41,11 @@ io.on('connection', (socket) => {
 
         console.log('user joined room', user);
         console.log('recent spots array: ', locations.getLocationsList(user.room));
-        io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
+        console.log('message list on new user join:', messages.getMsgList(user.room));
 
-        io.to(params.room).emit('updateUserList', users.getUserList(params.room));
+        io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
+        io.to(user.room).emit('updateMessages', messages.getMsgList(user.room));
+        io.to(user.room).emit('updateUserList', users.getUserList(user.room));
 
         // socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
 
@@ -79,7 +81,6 @@ io.on('connection', (socket) => {
     socket.on('updateMessagesArray', (newMessage) => {
         messages.addMessage(newMessage);
         var user = users.getUser(socket.id);
-        console.log('message list', messages.getMsgList(user.room));
         io.to(user.room).emit('updateMessages', messages.getMsgList(user.room));
     });
 

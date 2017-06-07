@@ -8,7 +8,6 @@ var initMap = require('../api/googlemaps');
 var actions = require('../actions/actions');
 var {socket} = require('./SignIn');
 
-
 class Map extends Component {
     componentWillMount () {
         const scriptInit = document.createElement("script");

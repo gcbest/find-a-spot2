@@ -10,14 +10,8 @@ import ChatArea from './ChatArea';
 
 class ChatView extends Component {
     render() {
-        socket.on('updateMessages', (messagesArray) => {
+        var {dispatch} = this.props;
 
-        });
-
-        socket.on('updateUserList', function(usersArr) {
-            console.log('Users list', usersArr);
-            dispatch(actions.updateUsersList(usersArr));
-        });
         return (
             <div>
                 <Nav/>

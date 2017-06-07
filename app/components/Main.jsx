@@ -1,10 +1,12 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
+const io = require('socket.io-client');
+export const socket = io();
+
 import SignIn from './SignIn';
 import MapView from './MapView'
 import ChatView from './ChatView';
-
 
 const Main = (props) => {
     return (

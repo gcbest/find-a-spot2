@@ -5,22 +5,7 @@ import OpenSpot from './OpenSpot';
 var {socket} = require('./SignIn');
 var actions = require('../actions/actions');
 
-
 class OpenSpotsList extends Component{
-    // constructor (props) {
-    //     super(props)
-    // }
-
-    componentDidUpdate() {
-
-        // socket.emit('updateLocationsArray', addresses, (err) => {
-        //     if (err) {
-        //         alert(err);
-        //     } else {
-        //         console.log('No error');
-        //     }
-        // });
-    }
     render () {
         var {locations, dispatch} = this.props;
 
