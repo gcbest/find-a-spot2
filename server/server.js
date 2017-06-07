@@ -55,14 +55,13 @@ io.on('connection', (socket) => {
     socket.on('addLocation', (openSpot, callback) =>{
         var user = users.getUser(socket.id);
         locations.addLocation(openSpot);
-        console.log('updated locations array: ', locations.getLocationsList(user.room));
         io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
         callback();
     });
 
-    socket.on('updateAvailability', (spot, callback) =>{
+    socket.on('updateAvailability', (id, callback) =>{
         var user = users.getUser(socket.id);
-        var loc = locations.removeLocation(spot.id);
+        var loc = locations.removeLocation(id);
         if (loc) {
             io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
         }

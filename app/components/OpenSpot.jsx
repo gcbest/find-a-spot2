@@ -45,6 +45,9 @@ class OpenSpot extends Component {
                        <p>{moment.unix(markedOpenAt).format('MMM Do YYYY @ h:mm a')}</p>
                        <button onClick={() => {
                            dispatch(action.updateAvailability(id, user));
+                           socket.emit('updateAvailability', id, (err) => {
+                              if (err) console.log(err);
+                           });
                        }}>I parked at this spot!</button>
                    </li>
                );
