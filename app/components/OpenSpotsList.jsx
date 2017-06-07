@@ -36,9 +36,9 @@ class OpenSpotsList extends Component{
         };
         return (
             <div id="spots-list">
-                <ul>
+                <ol id="messages" className="chat__messages">
                     {renderOpenSpots()}
-                </ul>
+                </ol>
             </div>
         );
     }

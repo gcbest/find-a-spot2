@@ -73,8 +73,10 @@ class ChatArea extends React.Component {
             });
         };
         return (
-            <div>
-                {renderChats()}
+            <div className="chat__main">
+                <ol id="messages" className="chat__messages">
+                    {renderChats()}
+                </ol>
             </div>
         );
     }

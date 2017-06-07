@@ -10,10 +10,14 @@ class ChatBubble extends Component {
 
         var renderBubble = () => {
             return (
-                <li className="message">
-                    <p><strong>{name}</strong></p>
-                    <p>{text}</p>
-                    <p>{moment.unix(timeSent).format('MMM Do YYYY @ h:mm a')}</p>
+                <li id="messages">
+                    <div className="message__title">
+                        <h4>{name}</h4>
+                        <span>{moment.unix(timeSent).format('M/D/YY @ h:mm a')}</span>
+                    </div>
+                    <div className="class__body">
+                        <p>{text}</p>
+                    </div>
                 </li>
             );
         };

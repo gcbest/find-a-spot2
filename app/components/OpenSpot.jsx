@@ -40,10 +40,10 @@ class OpenSpot extends Component {
 
             if (available) {
                return (
-                   <li>
-                       <p>{address}</p>
-                       <p>{moment.unix(markedOpenAt).format('MMM Do YYYY @ h:mm a')}</p>
-                       <button onClick={() => {
+                   <li id="open-spots">
+                       <h6>{address}</h6>
+                       <span>{moment.unix(markedOpenAt).format('MMM Do YYYY @ h:mm a')}</span>
+                       <button id="claim-spot" onClick={() => {
                            dispatch(action.updateAvailability(id, user));
                            socket.emit('updateAvailability', id, (err) => {
                               if (err) console.log(err);

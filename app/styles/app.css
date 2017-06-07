@@ -1,13 +1,53 @@
+button {
+    border: 1;
+    border-radius: 0;
+    line-height: 1;
+    background: #1F4C69;
+    padding: 1rem;
+    margin: .5rem;
+}
+
+button:hover{
+    padding:.99rem;
+}
+
+#button-container {
+    text-align: center;
+}
+
+h6 {
+    margin-bottom: 0rem;
+    margin-top: 1rem;
+}
+
+#header {
+    background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%)
+}
+
+#open-spot {
+    box-sizing: border-box;
+    margin: 1rem;
+    padding: .1rem .1rem .1rem 1.5rem;
+    font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 300;
+    font-size: .95rem;
+    background-color: #e1e1e1;
+    border-radius: .7rem;
+}
+
 .page-title {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
     display: block;
 }
 
-#header {
-background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%)
+#title {
+    margin: 0;
+    text-align: center;
+    background: -webkit-gradient(linear,left top,right bottom,color-stop(0,rgba(49,84,129,1)),color-stop(100%,rgba(39,107,130,1)));
+    background: -webkit-linear-gradient(125deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);
+    background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);
 }
-
-#button-container {
-    background-color: red;
+.top-bar {
+    background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);
 }

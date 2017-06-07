@@ -73,20 +73,19 @@ class SignIn extends Component {
         return (
             <div>
                 <div id="header">
-                    <h1 className="page-title">Find a spot near you!</h1>
+                    <h1 id="title">Find a spot near you!</h1>
                 </div>
                 <div className="centered-form">
                     <div className="centered-form__form">
                         <form id="signin-form">
                             <div className="form-field">
-                                <h3>Join a chat</h3>
+                                <h5>Join Your Chatroom</h5>
                             </div>
                             <div className="form-field">
-                                <label>Display name</label>
+                                <label>Display Name</label>
                                 <input type="text" ref="name" name="name" autoFocus/>
                             </div>
                             <div className="form-field">
-                                <label>Enter Your Zip Code's Room</label>
                                 <input ref="room" type="hidden" name="room"/>
                             </div>
                             <div className="form-field">

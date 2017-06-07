@@ -7,12 +7,12 @@ function initMap(centerLocation = {lat: -25.363, lng: 131.044}, markerLocationAr
     });
 
     // Close info window if open
-    map.addListener('click', () => {
-        alert('Clicked');
-        if (infowindow) {
-            infowindow.close();
-        }
-    });
+    // map.addListener('click', () => {
+    //     alert('Clicked');
+    //     if (infowindow) {
+    //         infowindow.close();
+    //     }
+    // });
 
     // var gmarkers = [];
     //

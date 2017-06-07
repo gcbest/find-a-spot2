@@ -90,7 +90,7 @@ class Map extends Component {
             <div>
                 <div id="map"/>
                 <div id="button-container">
-                    <button id="send-location" onClick={this.handleClick.bind(this)}>Mark the open spot here</button>
+                    <button id="send-location" onClick={this.handleClick.bind(this)}>Mark an open spot right here</button>
                 </div>
             </div>
         );
