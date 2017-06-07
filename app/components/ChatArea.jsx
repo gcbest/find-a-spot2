@@ -24,7 +24,6 @@ const ChatArea = (props) => {
             dispatch(actions.updateMessageList(messagesArr));
         });
 
-        debugger;
         var filteredMessages = filterByZipCode(messages);
         if(filteredMessages.length === 0) {
             return <p>No New Messages</p>;

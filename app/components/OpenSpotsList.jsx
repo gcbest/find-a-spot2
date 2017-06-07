@@ -12,7 +12,6 @@ class OpenSpotsList extends Component{
     // }
 
     componentDidUpdate() {
-        var {dispatch} = this.props;
 
         // socket.emit('updateLocationsArray', addresses, (err) => {
         //     if (err) {
@@ -21,13 +20,14 @@ class OpenSpotsList extends Component{
         //         console.log('No error');
         //     }
         // });
-
-        // socket.on('updateLocations', (locations) => {
-        //     dispatch(actions.updateLocationsList(locations));
-        // });
     }
     render () {
-        var {locations} = this.props;
+        var {locations, dispatch} = this.props;
+
+        socket.on('updateLocations', (locations) => {
+            dispatch(actions.updateLocationsList(locations));
+        });
+
         var filterByZipCode = (locationArray) => {
             // Filtering to only show locations in user's zip code
             var locationsFiltered = locationArray;

@@ -22,7 +22,7 @@ class Locations {
     }
 
     getLocationsList(room) {
-        var locations = this.locationsArr.filter((location) => location.room === room);
+        var locations = this.locationsArr.filter((location) => location.zipCode === room);
         return locations;
     }
 }

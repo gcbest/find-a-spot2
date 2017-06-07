@@ -17,28 +17,33 @@ class MapView extends Component {
 
 
 
-        var that = this;
+        // var that = this;
 
-        if (!navigator.geolocation) {
-            return alert('Geolocation not supported by your browser!');
-        }
-        // locationButton.attr('disabled', 'disabled').text('Sending Location...');
-        navigator.geolocation.getCurrentPosition(function(position) {
-            // locationButton.removeAttr('disabled').text('Send Location');
-            var userCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
+        // if (!navigator.geolocation) {
+        //     return alert('Geolocation not supported by your browser!');
+        // }
+        // // locationButton.attr('disabled', 'disabled').text('Sending Location...');
+        // navigator.geolocation.getCurrentPosition(function(position) {
+        //     // locationButton.removeAttr('disabled').text('Send Location');
+        //     var userCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
+        //
+        //     // that.state.userCoords = userCoords;
+        //
+        //     var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${userCoords.lat},${userCoords.lng}&key=AIzaSyBBdT0ajba4ZVpgaZeUupDTPE2x7ecAt4s`;
+        //     axios.get(url)
+        //         .then((response) => {
+        //             that.state.zipCode = response.data.results[0].address_components[7].long_name;
+        //         })
+        //         .catch((error) => {
+        //             throw error;
+        //         });
+        // });
+        var {dispatch} = this.props;
 
-            that.state.userCoords = userCoords;
-
-            var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${userCoords.lat},${userCoords.lng}&key=AIzaSyBBdT0ajba4ZVpgaZeUupDTPE2x7ecAt4s`;
-            axios.get(url)
-                .then((response) => {
-                    that.state.zipCode = response.data.results[0].address_components[7].long_name;
-                })
-                .catch((error) => {
-                    throw error;
-                });
+        socket.on('updateUserList', function(usersArr) {
+            console.log('Users list', usersArr);
+            dispatch(actions.updateUsersList(usersArr));
         });
-
 
         // this.addLocation = this.addLocation.bind(this);
         // this.updateAvailability = this.updateAvailability.bind(this);
@@ -56,13 +61,8 @@ class MapView extends Component {
 // };
 
     render () {
-        var {dispatch} = this.props;
         // socket.on('update locations', (spots) => this.updateLocationsArr(spots));
 
-        socket.on('updateUserList', function(usersArr) {
-            console.log('Users list', usersArr);
-            dispatch(actions.updateUsersList(usersArr));
-        });
         return (
             <div>
                 <Nav/>

@@ -13,6 +13,11 @@ class ChatView extends Component {
         socket.on('updateMessages', (messagesArray) => {
 
         });
+
+        socket.on('updateUserList', function(usersArr) {
+            console.log('Users list', usersArr);
+            dispatch(actions.updateUsersList(usersArr));
+        });
         return (
             <div>
                 <Nav/>
