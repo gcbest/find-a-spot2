@@ -80,7 +80,6 @@ class SignIn extends Component {
                     <h1 id="title">Find an Open Parking Spot Near You!</h1>
                 </div>
                 <div className="centered-form">
-                        <img id="parking-img" src="../images/parking.jpg" alt="Parking App"/>
                     <div className="centered-form__form">
                         <form id="signin-form">
                             <div className="form-field">
@@ -98,6 +97,7 @@ class SignIn extends Component {
                             </div>
                         </form>
                     </div>
+                    <img id="parking-img" src="../images/parking.jpg" alt="Parking App"/>
                 </div>
             </div>
         );
