@@ -8,33 +8,20 @@ var {socket} = require('./SignIn');
 class OpenSpot extends Component {
 
     render() {
-        var {address, markedOpenAt, available, id, user, dispatch} = this.props;
+        var {address, markedOpenAt, available, id, lat, lng, user, dispatch} = this.props;
 
-        var updateAvailability = (id) => {
-            // Only keep the available locations in this array
-            // var locationsArrCopy = this.props.locations.filter((spot) => {
-            //     if (id && Math.floor(lat * 100) === Math.floor(user.userCoords.lat * 100) && Math.floor(lng * 100) === Math.floor(user.userCoords.lng * 100)) {
-            //         var isAvailable = !available;
-            //         available = isAvailable;
-            //         alert('Successfully claimed this spot');
-            //         dispatch(actions.updateAvailability(id, user,));
-            //         // return false;
-            //     } else if (id && (Math.floor(lat * 100) !== Math.floor(user.userCoords.lat * 100) || Math.floor(lng * 100) !== Math.floor(user.userCoords.lng * 100))) {
-            //         alert("You must be at the spot's location to claim it");
-            //         dispatch(actions.updateAvailability(id, user,));
-            //     }
-            // });
-
+        var userFeedBackMessage = () => {
+            // Let the user know if they are able to claim the spot
+                if (id && Math.floor(lat * 1000) === Math.floor(user.userCoords.lat * 1000) && Math.floor(lng * 1000) === Math.floor(user.userCoords.lng * 1000)) {
+                    alert('Successfully claimed this spot');
+                    socket.emit('updateAvailability', id, (err) => {
+                        if (err) console.log(err);
+                    });
+                    dispatch(action.updateAvailability(id, user));
+                } else if (id && (Math.floor(lat * 1000) !== Math.floor(user.userCoords.lat * 1000) || Math.floor(lng * 1000) !== Math.floor(user.userCoords.lng * 1000))) {
+                    alert("You must be at the spot's location to claim it");
+                }
         };
-        var userFeedBackMessage = (isSuccess) => {
-              if(isSuccess) {
-                  alert('Successfully claimed this spot');
-              } else {
-                  alert("You must be at the spot's location to claim it");
-              }
-        };
-
-
 
         var renderSpot = () => {
 
@@ -44,10 +31,7 @@ class OpenSpot extends Component {
                        <h6>{address}</h6>
                        <span>{moment.unix(markedOpenAt).format('MMM Do YYYY @ h:mm a')}</span>
                        <button id="claim-spot" onClick={() => {
-                           dispatch(action.updateAvailability(id, user));
-                           socket.emit('updateAvailability', id, (err) => {
-                              if (err) console.log(err);
-                           });
+                           userFeedBackMessage();
                        }}>I parked at this spot!</button>
                    </li>
                );

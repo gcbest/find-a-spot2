@@ -30,14 +30,14 @@ export var locationsReducer = (state = [], action) => {
             ];
         case 'UPDATE_AVAILABILITY':
             return state.map((spot) => {
-                if (spot.id === action.id && Math.floor(spot.lat * 100) === Math.floor(action.user.userCoords.lat * 100) && Math.floor(spot.lng * 100) === Math.floor(action.user.userCoords.lng * 100)) {
+                if (spot.id === action.id && Math.floor(spot.lat * 1000) === Math.floor(action.user.userCoords.lat * 1000) && Math.floor(spot.lng * 1000) === Math.floor(action.user.userCoords.lng * 1000)) {
 
                     return {
                         ...spot,
                         available: false
                     };
 
-                } else if (spot.id === action.id && (Math.floor(spot.lat * 100) !== Math.floor(action.user.userCoords.lat * 100) || Math.floor(spot.lng * 100) !== Math.floor(action.user.userCoords.lng * 100))) {
+                } else if (spot.id === action.id && (Math.floor(spot.lat * 1000) !== Math.floor(action.user.userCoords.lat * 1000) || Math.floor(spot.lng * 1000) !== Math.floor(action.user.userCoords.lng * 1000))) {
                     return spot;
                 } else {
                     return spot;

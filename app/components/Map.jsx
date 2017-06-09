@@ -36,10 +36,10 @@ class Map extends Component {
         var url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=AIzaSyBBdT0ajba4ZVpgaZeUupDTPE2x7ecAt4s`;
         return axios.get(url)
             .then((response) => {
-                location.address = response.data.results[0].formatted_address;
-                location.zipCode = response.data.results[0].address_components[7].long_name;
-
-                // that.props.addLocation(location);
+                if(response.data.results[0].formatted_address && response.data.results[0].address_components[7].long_name) {
+                    location.address = response.data.results[0].formatted_address;
+                    location.zipCode = response.data.results[0].address_components[7].long_name;
+                }
 
                 var {dispatch} = that.props;
                 dispatch(actions.addLocation(location));
@@ -77,7 +77,12 @@ class Map extends Component {
                 markedClosedAt: undefined
             };
 
+            var obj2 = {lat: 40.8558369, lng: -73.8674311, available: true, id: uuid()};
+            var obj3 = {lat: 40.852524, lng: -73.8675448, available: true, id: uuid()};
+
             that.formatAddress(obj);
+            that.formatAddress(obj2);
+            that.formatAddress(obj3);
 
         }, function() {
             // locationButton.removeAttr('disabled').text('Send Location');

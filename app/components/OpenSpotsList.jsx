@@ -11,7 +11,6 @@ class OpenSpotsList extends Component{
         var {locations, dispatch} = this.props;
 
         socket.on('updateLocations', function(locations) {
-            debugger;
             dispatch(actions.updateLocationsList(locations));
         });
     }
@@ -31,10 +30,9 @@ class OpenSpotsList extends Component{
         };
 
         var filteredLocations = filterByZipCode(locations);
-
         var renderOpenSpots = () => {
             if (filteredLocations.length === 0) {
-                return <h4>No Open Spots Available</h4>;
+                return <h6>No Open Spots Available</h6>;
             }
 
             return filteredLocations.map((spot, i) => {
