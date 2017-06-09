@@ -13,7 +13,7 @@ class SignIn extends Component {
         if (!document.getElementById('googleMapsAPI')) {
             const script = document.createElement("script");
 
-            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBBdT0ajba4ZVpgaZeUupDTPE2x7ecAt4s&callback=initMap";
+            script.src = "https://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyBBdT0ajba4ZVpgaZeUupDTPE2x7ecAt4s&callback=initMap";
             script.async = true;
             script.defer = true;
             script.setAttribute('id', 'googleMapsAPI');
