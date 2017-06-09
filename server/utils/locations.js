@@ -5,7 +5,7 @@ class Locations {
 
     addLocation(locationObj) {
         this.locationsArr.push(locationObj);
-        return locationObj;
+        // return locationObj;
     }
 
     removeLocation(id) {

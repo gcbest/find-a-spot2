@@ -6,12 +6,21 @@ var {socket} = require('./SignIn');
 var actions = require('../actions/actions');
 
 class OpenSpotsList extends Component{
-    render () {
+    constructor(props) {
+        super(props);
         var {locations, dispatch} = this.props;
 
-        socket.on('updateLocations', (locations) => {
+        socket.on('updateLocations', function(locations) {
+            debugger;
             dispatch(actions.updateLocationsList(locations));
         });
+    }
+    render () {
+        var {locations, dispatch} = this.props;
+        //
+        // socket.on('updateLocations', (locations) => {
+        //     dispatch(actions.updateLocationsList(locations));
+        // });
 
         var filterByZipCode = (locationArray) => {
             // Filtering to only show locations in user's zip code
@@ -25,7 +34,7 @@ class OpenSpotsList extends Component{
 
         var renderOpenSpots = () => {
             if (filteredLocations.length === 0) {
-                return <p>No Open Spots Available</p>;
+                return <h4>No Open Spots Available</h4>;
             }
 
             return filteredLocations.map((spot, i) => {

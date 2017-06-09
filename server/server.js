@@ -57,6 +57,8 @@ io.on('connection', (socket) => {
     socket.on('addLocation', (openSpot, callback) =>{
         var user = users.getUser(socket.id);
         locations.addLocation(openSpot);
+        console.log('locations class: ', locations);
+        console.log('locations list after add', locations.getLocationsList(user.room));
         io.to(user.room).emit('updateLocations', locations.getLocationsList(user.room));
         callback();
     });
@@ -70,13 +72,13 @@ io.on('connection', (socket) => {
         callback();
     });
 
-    socket.on('updateLocationsArray', (openSpots, callback) =>{
-        if(openSpots.length > 0) {
-            var user = users.getUser(socket.id);
-            io.to(user.room).emit('update locations', locations);
-        }
-        callback();
-    });
+    // socket.on('updateLocationsArray', (openSpots, callback) =>{
+    //     if(openSpots.length > 0) {
+    //         var user = users.getUser(socket.id);
+    //         io.to(user.room).emit('updateLocations', locations);
+    //     }
+    //     callback();
+    // });
 
     socket.on('updateMessagesArray', (newMessage) => {
         messages.addMessage(newMessage);

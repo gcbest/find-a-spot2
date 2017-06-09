@@ -9,7 +9,7 @@ var actions = require('../actions/actions');
 var {socket} = require('./SignIn');
 
 class Map extends Component {
-    componentWillMount () {
+    componentWillMount() {
         const scriptInit = document.createElement("script");
         scriptInit.text = initMap;
 
@@ -53,16 +53,21 @@ class Map extends Component {
                 throw error;
             });
     }
-    handleClick () {
+    handleClick() {
         if (!navigator.geolocation) {
             return alert('Geolocation not supported by your browser!');
         }
 
         var that = this;
 
-        // locationButton.attr('disabled', 'disabled').text('Sending Location...');
+        var locationButton = document.getElementById('send-location');
+        locationButton.setAttribute('disabled', 'disabled');
+        locationButton.innerHTML = 'Sending Location...';
+
         navigator.geolocation.getCurrentPosition(function(position) {
-            // locationButton.removeAttr('disabled').text('Send Location');
+            locationButton.removeAttribute('disabled');
+            locationButton.innerHTML = 'Mark an open spot right here';
+
             var obj = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
@@ -72,13 +77,7 @@ class Map extends Component {
                 markedClosedAt: undefined
             };
 
-            var obj2 = {lat: 40.728224399999995, lng: -74.1844780998, address: '74 Peabody Pl, Brick City', available: true, id: "3", zipCode: '07103'};
-
-            var obj3 = {lat: 40.728224399999995, lng: -74.1844780998, address: '99 Allen Ave, New Jack City', available: true, id: "4", zipCode: '07103'};
-
             that.formatAddress(obj);
-            that.formatAddress(obj2);
-            that.formatAddress(obj3);
 
         }, function() {
             // locationButton.removeAttr('disabled').text('Send Location');

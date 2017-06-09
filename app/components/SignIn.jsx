@@ -34,13 +34,17 @@ class SignIn extends Component {
         // set location in browserHistory
         this.props.history.push('/');
 
-        // Grab user location
         if (!navigator.geolocation) {
             return alert('Geolocation not supported by your browser!');
         }
-        // locationButton.attr('disabled', 'disabled').text('Sending Location...');
+
+        var enterButton = document.getElementById('enter');
+
+        enterButton.setAttribute('disabled', 'disabled');
+        enterButton.innerHTML = 'Signing into your room...';
+
+        // Grab user location
         navigator.geolocation.getCurrentPosition(function(position) {
-            // locationButton.removeAttr('disabled').text('Send Location');
             var userCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
 
             // Convert Lat & Lng into zip code
@@ -89,7 +93,7 @@ class SignIn extends Component {
                                 <input ref="room" type="hidden" name="room"/>
                             </div>
                             <div className="form-field">
-                                <button onClick={this.handleSubmit.bind(this)}>Enter</button>
+                                <button id="enter" onClick={this.handleSubmit.bind(this)}>Enter</button>
                             </div>
                         </form>
                     </div>

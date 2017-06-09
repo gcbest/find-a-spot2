@@ -63,7 +63,7 @@ class ChatArea extends React.Component {
         var renderChats = () => {
             var filteredMessages = filterByZipCode(messages);
             if(filteredMessages.length === 0) {
-                return <p>No New Messages</p>;
+                return <p>Tell everyone where the spots are!</p>;
             }
 
             return filteredMessages.map((msg, i) => {
