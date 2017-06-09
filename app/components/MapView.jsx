@@ -64,7 +64,7 @@ class MapView extends Component {
         // socket.on('update locations', (spots) => this.updateLocationsArr(spots));
 
         return (
-            <div>
+            <div className="main__section">
                 <Nav/>
                 <Map openSpots={this.props.locations} userCoords={this.props.user.userCoords} />
                 <OpenSpotsList userCoords={this.props.user.userCoords}/>

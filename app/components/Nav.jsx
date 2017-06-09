@@ -12,6 +12,15 @@ const Nav = (props) => {
                     <li className="active"><Link to={`/mapview/${props.user.room}`}>Map</Link></li>
                 </ul>
             </div>
+            <div className="top-bar-right">
+                <div className="menu">
+                    <ul className="menu">
+                        <li className="menu-text active">
+                            Room: {props.user.room}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };

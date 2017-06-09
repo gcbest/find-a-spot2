@@ -15,6 +15,19 @@ button:hover{
     text-align: center;
 }
 
+.centered-form {
+    flex-wrap: wrap;
+}
+
+.centered-form__form {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.column {
+    padding: 0;
+}
+
 h6 {
     margin-bottom: 0rem;
     margin-top: 1rem;
@@ -22,6 +35,15 @@ h6 {
 
 #header {
     background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%)
+}
+
+.large-12 {
+    padding: 0;
+}
+
+.main__section {
+    padding-left: .625rem;
+    padding-right: .625rem;
 }
 
 #open-spot {
@@ -41,12 +63,22 @@ h6 {
     display: block;
 }
 
+#parking-img {
+    width: 22rem;
+    border-radius: .5rem;
+}
+
+.row {
+    max-width: none;
+    margin: 0;
+}
+
 #title {
     margin: 0;
     text-align: center;
-    background: -webkit-gradient(linear,left top,right bottom,color-stop(0,rgba(49,84,129,1)),color-stop(100%,rgba(39,107,130,1)));
-    background: -webkit-linear-gradient(125deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);
-    background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);
+    /*background: -webkit-gradient(linear,left top,right bottom,color-stop(0,rgba(49,84,129,1)),color-stop(100%,rgba(39,107,130,1)));*/
+    /*background: -webkit-linear-gradient(125deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);*/
+    /*background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);*/
 }
 .top-bar {
     background: linear-gradient(325deg,rgba(39,107,130,1) 0,rgba(49,84,129,1) 100%);

@@ -20,9 +20,7 @@ class Map extends Component {
         if (!navigator.geolocation) {
             return alert('Geolocation not supported by your browser!');
         }
-        // locationButton.attr('disabled', 'disabled').text('Sending Location...');
         navigator.geolocation.getCurrentPosition(function(position) {
-            // locationButton.removeAttr('disabled').text('Send Location');
             var userCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
 
             initMap(userCoords, that.props.openSpots);
@@ -77,15 +75,14 @@ class Map extends Component {
                 markedClosedAt: undefined
             };
 
-            var obj2 = {lat: 40.8558369, lng: -73.8674311, available: true, id: uuid()};
-            var obj3 = {lat: 40.852524, lng: -73.8675448, available: true, id: uuid()};
+            // var obj2 = {lat: 40.8558369, lng: -73.8674311, available: true, id: uuid()};
+            // var obj3 = {lat: 40.852524, lng: -73.8675448, available: true, id: uuid()};
 
             that.formatAddress(obj);
-            that.formatAddress(obj2);
-            that.formatAddress(obj3);
+            // that.formatAddress(obj2);
+            // that.formatAddress(obj3);
 
         }, function() {
-            // locationButton.removeAttr('disabled').text('Send Location');
             alert('Unable to fetch location');
         });
     }

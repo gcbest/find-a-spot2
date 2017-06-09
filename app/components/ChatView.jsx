@@ -10,10 +10,8 @@ import ChatArea from './ChatArea';
 
 class ChatView extends Component {
     render() {
-        var {dispatch} = this.props;
-
         return (
-            <div>
+            <div className="main__section">
                 <Nav/>
                 <div className="chat">
                     <div className="chat__sidebar">

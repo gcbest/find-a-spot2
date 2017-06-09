@@ -77,9 +77,10 @@ class SignIn extends Component {
         return (
             <div>
                 <div id="header">
-                    <h1 id="title">Find a spot near you!</h1>
+                    <h1 id="title">Find an Open Parking Spot Near You!</h1>
                 </div>
                 <div className="centered-form">
+                        <img id="parking-img" src="../images/parking.jpg" alt="Parking App"/>
                     <div className="centered-form__form">
                         <form id="signin-form">
                             <div className="form-field">

@@ -12,7 +12,7 @@ const Main = (props) => {
     return (
         <div>
             <div className="row">
-                <div className="column small-12 medium-16 large-16 large-centered">
+                <div className="column small-12 medium-12 large-12">
                     <Switch>
                         <Route exact path="/" component={SignIn}/>
                         <Route path="/mapview/:id" component={MapView}/>
