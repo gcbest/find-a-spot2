@@ -21,5 +21,8 @@ It's as easy as:
 6. After you leave, let others know that the spot is available
 ![Mark an Open Spot](http://g.recordit.co/dmATplTVNd.gif)
 
+Technologies Used: 
+React, Redux, React-Router, Socket.io, Foundation
 
-
+Credits:
+Andrew Mead's React-Redux Boilerplate
