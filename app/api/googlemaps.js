@@ -6,31 +6,18 @@ function initMap(centerLocation = {lat: -25.363, lng: 131.044}, markerLocationAr
         center: centerLocation
     });
 
-    // Close info window if open
-    // map.addListener('click', () => {
-    //     alert('Clicked');
-    //     if (infowindow) {
-    //         infowindow.close();
-    //     }
-    // });
-
-    // var gmarkers = [];
-    //
     if (markerLocationArr.length === 0) {
         return;
     }
 
     if (markerLocationArr.length >= 0) {
-        // removeMarkers();
+        // create new markers for each open parking spot
         markerLocationArr.forEach((spot) => {
-
             var marker = new google.maps.Marker({
                 position: spot,
                 animation: google.maps.Animation.DROP,
                 map: map
             });
-
-            // gmarkers.push(marker);
 
             marker.addListener('click', () => {
                 var position = marker.getPosition();
@@ -52,16 +39,6 @@ function initMap(centerLocation = {lat: -25.363, lng: 131.044}, markerLocationAr
             });
         });
     }
-    //
-    // function toggleMarkers() {
-    //     for (var i = 0; i < gmarkers.length; i++) {
-    //         gmarkers[i].setMap(null);
-    //         gmarkers[i].setMap(map);
-    //     }
-    // }
-    //
-    // toggleMarkers();
-
 }
 
 module.exports = initMap;

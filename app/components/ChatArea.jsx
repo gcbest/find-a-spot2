@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import ChatBubble from './ChatBubble';
-
 var {socket} = require('./SignIn');
 var actions = require('../actions/actions');
 

@@ -22,11 +22,6 @@ class SignIn extends Component {
         }
 
     }
-    // componentDidMount() {
-    //     socket.on('connect', function () {
-    //         console.log('Connected to server');
-    //     });
-    // }
     handleSubmit(e) {
         e.preventDefault();
         var that = this;

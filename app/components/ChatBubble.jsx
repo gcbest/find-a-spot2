@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
-var action = require('../actions/actions');
-var {socket} = require('./SignIn');
 
 export class ChatBubble extends Component {
     render() {
@@ -32,7 +30,3 @@ export class ChatBubble extends Component {
 export default connect((state) => {
     return state;
 })(ChatBubble);
-
-// pass address info down to open spot
-// return an array of open spots components in list
-//

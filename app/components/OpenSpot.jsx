@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 var action = require('../actions/actions');
 var {socket} = require('./SignIn');
 
-
 export class OpenSpot extends Component {
 
     render() {
@@ -24,7 +23,6 @@ export class OpenSpot extends Component {
         };
 
         var renderSpot = () => {
-
             if (available) {
                return (
                    <li id="open-spots">
@@ -48,7 +46,3 @@ export class OpenSpot extends Component {
 export default connect((state) => {
     return state;
 })(OpenSpot);
-
-// pass address info down to open spot
-// return an array of open spots components in list
-//
