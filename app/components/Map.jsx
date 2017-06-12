@@ -75,12 +75,7 @@ class Map extends Component {
                 markedClosedAt: undefined
             };
 
-            // var obj2 = {lat: 40.8558369, lng: -73.8674311, available: true, id: uuid()};
-            // var obj3 = {lat: 40.852524, lng: -73.8675448, available: true, id: uuid()};
-
             that.formatAddress(obj);
-            // that.formatAddress(obj2);
-            // that.formatAddress(obj3);
 
         }, function() {
             alert('Unable to fetch location');

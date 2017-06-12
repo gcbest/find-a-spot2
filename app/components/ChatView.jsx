@@ -19,7 +19,6 @@ class ChatView extends Component {
                         <UserList users={this.props.usersList}/>
                     </div>
                     <div className="chat__main">
-                        {/*<ol id="messages" className="chat__messages"></ol>*/}
                         <ChatArea/>
                         <SendMessage/>
                     </div>

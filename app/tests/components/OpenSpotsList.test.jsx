@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import expect from 'expect';
-var $ = require('jQuery');
-import TestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
-import OpenSpotsList from '../../components/OpenSpotsList';
-import OpenSpot from '../../components/OpenSpot';
+
+var {configure} = require('../../store/configureStore');
+import ConnectedOpenSpotsList, {OpenSpotsList} from '../../components/OpenSpotsList';
+import ConnectedOpenSpot from '../../components/OpenSpot';
 
 describe('OpenSpotsList', () => {
     it('should exist', () => {
@@ -13,40 +14,35 @@ describe('OpenSpotsList', () => {
     });
 
     it('should render one OpenSpot component for each open spot', () => {
+            var openSpotsTest = [
+                {
+                    lat: 43.303,
+                    lng: -23.2030,
+                    id: 5,
+                    available: true,
+                    markedOpenAt: "12:40",
+                    markedClosedAt: undefined
+                },
+                {
+                    lat: 33.303,
+                    lng: -63.2030,
+                    id: 7,
+                    available: true,
+                    markedOpenAt: "5:40",
+                    markedClosedAt: undefined
+                }
+            ];
+        var store = configure({
+            locations: openSpotsTest
+        });
+        var provider = ReactTestUtils.renderIntoDocument(
+            <Provider store={store}>
+                <ConnectedOpenSpotsList/>
+            </Provider>
+        );
 
-        var openSpots = [
-            {
-                lat: 43.303,
-                lng: -23.2030,
-                id: 5,
-                available: true,
-                markedOpenAt: "12:40",
-                markedClosedAt: undefined
-            },
-
-            {
-                lat: 33.303,
-                lng: -63.2030,
-                id: 7,
-                available: true,
-                markedOpenAt: "5:40",
-                markedClosedAt: undefined
-            }
-        ];
-
-        var openSpotsList = TestUtils.renderIntoDocument(<OpenSpotsList addresses={openSpots}/>);
-        var openSpotComponents = TestUtils.scryRenderedComponentsWithType(openSpotsList, OpenSpot);
-
-        expect(openSpotComponents.length).toBe(openSpots.length);
+        var openSpotsList = ReactTestUtils.findRenderedComponentWithType(provider, ConnectedOpenSpotsList);
+        var openSpots = ReactTestUtils.scryRenderedComponentsWithType(openSpotsList, ConnectedOpenSpot);
+        expect(openSpots.length).toEqual(2);
     });
-
-    it('should render an empty message if there are no spots available', () => {
-        var openSpots = [];
-        var openSpotsList = TestUtils.renderIntoDocument(<OpenSpotsList addresses={openSpots}/>);
-
-        var $el = $(ReactDOM.findDOMNode(openSpotsList));
-
-        expect($el.find('#spots-list ul').length).toBe(0);
-    });
-
 });

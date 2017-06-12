@@ -8,7 +8,7 @@ import SignIn from './SignIn';
 import MapView from './MapView'
 import ChatView from './ChatView';
 
-const Main = (props) => {
+const Main = () => {
     return (
         <div>
             <div className="row">

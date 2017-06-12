@@ -26,14 +26,6 @@ export var addUser = (name, room, redirect = false, userCoords) => {
 };
 
 export var addLocation = (obj) => {
-    // socket.emit('update locations array', this.state.locations, (err) => {
-    //     if (err) {
-    //         alert(err);
-    //     } else {
-    //         console.log('No error');
-    //     }
-    // });
-
     return {
         type: 'ADD_LOCATION',
         lat: obj.lat,

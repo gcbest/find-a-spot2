@@ -5,24 +5,20 @@ import OpenSpot from './OpenSpot';
 var {socket} = require('./SignIn');
 var actions = require('../actions/actions');
 
-class OpenSpotsList extends Component{
+export class OpenSpotsList extends Component{
     constructor(props) {
         super(props);
-        var {locations, dispatch} = this.props;
+        var {dispatch} = this.props;
 
         socket.on('updateLocations', function(locations) {
             dispatch(actions.updateLocationsList(locations));
         });
     }
     render () {
-        var {locations, dispatch} = this.props;
-        //
-        // socket.on('updateLocations', (locations) => {
-        //     dispatch(actions.updateLocationsList(locations));
-        // });
+        var {locations} = this.props;
 
         var filterByZipCode = (locationArray) => {
-            // Filtering to only show locations in user's zip code
+            // Filtering to only show locations in the user's zip code
             var locationsFiltered = locationArray;
             return locationsFiltered.filter((spot) => {
                 return spot.available && spot.zipCode === this.props.user.room;

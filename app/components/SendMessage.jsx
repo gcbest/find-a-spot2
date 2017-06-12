@@ -6,24 +6,8 @@ var {socket} = require('./SignIn');
 var actions = require('../actions/actions');
 
 
-class SendMessage extends Component {
+export class SendMessage extends Component {
     render() {
-        var scrollToBottom = () => {
-            // selectors
-            var messages = jQuery('#messages');
-            var newMessage = messages.children('li:last-child');
-            debugger;
-            // heights
-            var clientHeight = messages.prop('clientHeight');
-            var scrollTop = messages.prop('scrollTop');
-            var scrollHeight = messages.prop('scrollHeight');
-            var newMessageHeight = newMessage.innerHeight();
-            var lastMessageHeight = newMessage.prev().innerHeight();
-
-            if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-                messages.scrollTop(scrollHeight);
-            }
-        };
         var createMessage = (e) => {
             var {user, dispatch} = this.props;
             e.preventDefault();
@@ -46,13 +30,12 @@ class SendMessage extends Component {
             }
             // clear input box after sending the message
             this.refs.message.value = '';
-            scrollToBottom();
         };
         return (
             <div className="chat__footer">
                 <form onSubmit={createMessage} id="message-form">
                     <input name="message" ref="message" type="text" placeholder="Type a message" autoFocus autoComplete="off" />
-                    <button>Send</button>
+                    <button id="send-msg-btn">Send</button>
                 </form>
             </div>
         );

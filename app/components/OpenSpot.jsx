@@ -5,7 +5,7 @@ var action = require('../actions/actions');
 var {socket} = require('./SignIn');
 
 
-class OpenSpot extends Component {
+export class OpenSpot extends Component {
 
     render() {
         var {address, markedOpenAt, available, id, lat, lng, user, dispatch} = this.props;
