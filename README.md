@@ -5,6 +5,10 @@
 It's as easy as:
 
 1. Go to Find A Spot (https://findaspot.herokuapp.com/)
+
 2. Sign In
+![Sign In](http://g.recordit.co/R1Sxzi2EJK.gif)
+
 3. See what spots other users have posted online
 4. Chat with other people in your area to see where free parking is available
+
