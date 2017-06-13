@@ -67,6 +67,8 @@ class SignIn extends Component {
         var {user} = this.props;
 
         if (user.redirect) {
+            // so that the user can go back to the sign in page
+            user.redirect = false;
             return <Redirect to={`/mapview/${user.room}`}/>;
         }
         return (

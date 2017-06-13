@@ -7,7 +7,7 @@ const Nav = (props) => {
         <div className="top-bar">
             <div className="top-bar-left">
                 <ul className="menu">
-                    <li className="menu-text active">Find-A-Spot</li>
+                    <li className="active"><a id="nav-title" href={window.location.origin}>Find-A-Spot</a></li>
                     <li className="active"><Link to={`/chatview/${props.user.room}`}>Chat</Link></li>
                     <li className="active"><Link to={`/mapview/${props.user.room}`}>Map</Link></li>
                 </ul>
@@ -28,5 +28,4 @@ const Nav = (props) => {
 export default connect((state) => {
     return state;
 })(Nav);
-
 

@@ -22,7 +22,6 @@ class Map extends Component {
         }
         navigator.geolocation.getCurrentPosition(function(position) {
             var userCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
-
             initMap(userCoords, that.props.openSpots);
         });
     }
@@ -74,7 +73,6 @@ class Map extends Component {
                 markedOpenAt: moment().unix(),
                 markedClosedAt: undefined
             };
-
             that.formatAddress(obj);
 
         }, function() {

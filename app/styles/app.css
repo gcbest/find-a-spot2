@@ -46,6 +46,12 @@ h6 {
     padding-right: .625rem;
 }
 
+#nav-title {
+    background-color: #e6e6e6;
+    font-weight: 700;
+    color: black;
+}
+
 #open-spot {
     box-sizing: border-box;
     margin: 1rem;
